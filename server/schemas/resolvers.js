@@ -8,13 +8,13 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                    .populate('savedBooks');
+                    .populate('savedBooks')
 
                 return userData;
             }
 
             throw new AuthenticationError('Not logged in');
-        }
+        },
     },
     Mutation: {
         login: async (parent, { email, password }) => {
